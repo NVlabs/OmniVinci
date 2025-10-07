@@ -4,9 +4,9 @@
 
 # OmniVinci: Enhancing Omni-Modal Understanding LLM
 
-[![Paper](https://img.shields.io/badge/ArXiv-Paper-brown)](https://arxiv.org/abs/2507.07966)
-[![Code](https://img.shields.io/badge/GitHub-Link-blue)](https://github.com/NVlabs/Long-RL)
-[![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/Efficient-Large-Model/LongVILA-R1-7B)
+[![Paper](https://img.shields.io/badge/ArXiv-Paper-brown)](https://arxiv.org/)
+[![Code](https://img.shields.io/badge/GitHub-Link-blue)](https://github.com/NVlabs)
+[![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co)
 
 <div align="center">
 
@@ -36,20 +36,6 @@ We finally demonstrate omni-modal advantages in downstream applications spanning
 | Qwen2.5-Omni | 47.45            | 45.4              | 71.0                       | 56.7         | 70.3             | 64.3                         |
 | Ours         | 66.5             | 48.23             | 71.6                     | 58.4         | 70.6             | 68.2                         |
 
-
-## TABLE OF CONTENTS
-1. [News](#news)
-3. [Introduction](#introduction)
-4. [LongVILA-R1 Model Usage](#longvila-r1-model-usage)
-5. [Supported Features](#supported-features)
-6. [Installation](#installation)
-7. [Training](#training)
-8. [LongVideo-Reason](#longvideo-reason)
-9. [Examples](#examples)
-10. [How to contribute](#how-to-contribute)
-11. [Core Contributors](#core-Contributors)
-12. [Citation](#citation)
-13. [Acknowledgement](#acknowledgement)
 
 ## News
 - [x] [2025.9.30] **OmniVinci-9B** is released! It supports joint understanding of **vision, audio, and text**.
