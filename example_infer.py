@@ -1,3 +1,19 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
 from transformers import AutoProcessor, AutoModel, AutoConfig, GenerationConfig
 import torch
 import os
@@ -59,7 +75,6 @@ class NVOmniVideoInference:
         if not self.validate_paths(self.model_path):
             return False
             
-        # try:
         if True:
             logger.info("Loading model configuration...")
             self.config = AutoConfig.from_pretrained(self.model_path, trust_remote_code=True)
@@ -89,10 +104,6 @@ class NVOmniVideoInference:
             self._print_model_info()
             return True
             
-        # except Exception as e:
-        #     logger.error(f"Failed to load model: {str(e)}")
-        #     return False
-    
     def _print_model_info(self):
         """Print useful information about the loaded model."""
         logger.info("=" * 50)
@@ -234,16 +245,8 @@ class NVOmniVideoInference:
                 skip_special_tokens=True
             )[0]
 
-            # Extract only the new generated text (remove the input prompt)
-            # if text in response:
-            #     response = response[len(text):].strip()
-            
             return response
             
-        # except Exception as e:
-        #     logger.error(f"Error during generation: {str(e)}")
-        #     return None
-    
     def batch_generate(
         self, 
         video_text_pairs: List[tuple], 
@@ -276,8 +279,7 @@ def main():
     
     # Configuration
     MODEL_PATH = "./"
-    VIDEO_PATH = "/home/hanrongy/user_path/dataset/demo_videos/tim.mp4"
-    # TEXT_PROMPT = "Describe this video based on the audio."
+    VIDEO_PATH = "xxx.mp4"
     TEXT_PROMPT = "Assess the video, followed by a detailed description of it's video and audio contents."
 
     num_video_frames=128
@@ -303,8 +305,6 @@ def main():
         load_audio_in_video=load_audio_in_video,
         audio_length=audio_length,
         max_new_tokens=1024,
-        # temperature=0.7,
-        # top_p=0.9
     )
     
     if response:
