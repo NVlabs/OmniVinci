@@ -115,6 +115,26 @@ print(processor.tokenizer.batch_decode(output_ids, skip_special_tokens=True))
 
 - **For a audio and image inference examples please refer to ```example_mini_audio.py``` and ```example_mini_image.py```**
 
+## Examples
+<p align="center" width="100%">
+<img src="assets/trim_jensen_interview.png" alt="Jensen Huang Interview" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+</p>
+
+[Video Link](https://1drv.ms/v/c/B25CDB7F0B457DEF/Ecl-nN62pjlDsL3pLMt1nb0BH8rTks_-Yi0w-6kb6PXkDQ?e=VQNn8r)
+
+<span style="color: rgb(133, 184, 55);">**Question**</span>: "What are they talking about in detail?"  
+<span style="color: rgb(133, 184, 55);">**Answer**</span>: The video features Jensen Huang with gray hair and glasses, dressed in a black leather jacket, speaking into a microphone in a modern office setting. The background includes a glass wall and a green panel, with a blurred view of desks and chairs. Jensen Huang discusses the evolution of artificial intelligence, focusing on the impact of deep learning and the development of AI frameworks. He emphasizes the importance of data, computing power, and software methodologies in driving AI advancements. The conversation highlights the transformative potential of AI, particularly in perception and generative capabilities, and the need for a new approach to software development. Jensen Huang also mentions the creation of a new AI supercomputer, DGX-1, and its impact on the industry. The video concludes with Jensen Huang discussing the second phase of AI, generative AI, and its potential to revolutionize the way we understand and create information.
+
+<p align="center" width="100%">
+<img src="assets/robot_jensen.png" alt="Jensen Huang Interview" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+</p>
+
+[Video Link](https://1drv.ms/v/c/B25CDB7F0B457DEF/ESjFqXmB_DRNjd76RLym2NYBN-BYhQUOLMtOdNwlXrA5qg?e=CiBq08)
+
+<span style="color: rgb(133, 184, 55);">**Question**</span>: "Describe the video in detail."  
+<span style="color: rgb(133, 184, 55);">**Answer**</span>: The video begins with Jensen Huang in a modern, well-lit room with large windows and a view of greenery outside. He dressed in a black jacket and white pants, is seated at a table, writing a message on a black card with a gold pen. The message reads, 'To Robot, Enjoy Your New Brain!' followed by a signature. He then places the card on the table rand begins to open a large black gift box with a gold ribbon and bow. The scene transitions to a close-up of the gift box on the table, with the person's hand visible. The focus then shifts to a robot wearing a white hard hat with the 'NVIDIA' logo, standing in a workshop or industrial setting. The robot holds the same black gift box with the gold ribbon and bow, and it opens the box to reveal the black card with the message. The robot examines the card closely. The narrative continues with the robot, still in the workshop setting, holding the black gift box. The robot opens the box, revealing a sleek, white device with a black screen, nestled in crumpled black paper. The robot examines the device closely, then places it back into the box and closes it. The scene transitions to a different setting, where the robot is now in a modern office environment with green walls and multiple computer monitors. The robot stands behind the closed gift box, gesturing with its hands as if explaining or presenting something. The video wraps up with the robot in the modern office environment, gesturing with its hands. The scene transitions to a close-up of the robot's face, showing its detailed features and expressive eyes. 
+
+
 
 ## Citation
 Please consider to cite our paper and this framework, if they are helpful in your research.
