@@ -27,7 +27,7 @@ For model architecture, we present three key innovations:
 **(i)** OmniAlignNet for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space;
 **(ii)** Temporal Embedding Grouping for capturing relative temporal alignment between vision and audio signals; and
 **(iii)** Constrained Rotary Time Embedding for encoding absolute temporal information in omni-modal embeddings. 
-We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning. Our model, \modelname, improves over Qwen2.5-Omni with +19.05 on DailyOmni (cross-modal understanding), +1.7 on MMAR (audio), and +3.9 on Video-MME (vision), while using just 0.2T training tokens - a 6$\times$ reduction compared to Qwen2.5-Omni’s 1.2T.
+We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning. Our model outperforms Qwen2.5-Omni with +19.05 on DailyOmni (cross-modal understanding), +1.7 on MMAR (audio), and +3.9 on Video-MME (vision), while using just 0.2T training tokens - a 6$\times$ reduction compared to Qwen2.5-Omni’s 1.2T.
 We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory. 
 
 | Model        | Omni - Dailyomni | Omni - Worldsense | Audio - MMAU | Audio - MMAR | Vision - MVBench | Vision - Video-MME (w/o sub) |
