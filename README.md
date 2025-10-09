@@ -2,18 +2,17 @@
 <img src="assets/logo.png" alt="Stanford-Alpaca" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 </p>
 
-# OmniVinci: Enhancing Omni-Modal Understanding LLM
+# <span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">**OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM [[<u>Link</u>](https://arxiv.org/)]**</span> <br />
 
 [![Paper](https://img.shields.io/badge/ArXiv-Paper-brown)](https://arxiv.org/)
 [![Code](https://img.shields.io/badge/GitHub-Link-blue)](https://github.com/NVlabs)
-[![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co)
+[![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/nvidia/omnivinci)
 
 <div align="center">
 
 </div>
 
-<span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">**OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM [[<u>Link</u>](https://arxiv.org/)]**</span> <br />
-[Hanrong Ye*†](https://sites.google.com/site/yhrspace/home), Huck Yang†, Arushi Goel†, Wei Huang†, Ligeng Zhu†, Yuanhang Su†, Sean Lin†, An-Chieh Cheng†, Zhen Wan†, Jinchuan Tian, Yuming Lou†, Dong Yang†, Zhijian Liu†, Yukang Chen†, Ambrish Dantrey, Ehsan Jahangiri, Daguang Xu, Ehsan Hosseini Asl, Danial Mohseni Taheri, Vidya Murali, Sifei Liu, Jason Lu, Oluwatobi Olabiyi, Frank Wang, Rafael Valle, Bryan Catanzaro, Andrew Tao, Song Han, Jan Kautz, Hongxu Yin^†, Pavlo Molchanov^  
+[Hanrong Ye*†](https://sites.google.com/site/yhrspace/home), Huck Yang†, Arushi Goel†, Wei Huang†, Ligeng Zhu†, Yuanhang Su†, Sean Lin†, An-Chieh Cheng†, Zhen Wan†, Jinchuan Tian†, Yuming Lou†, Dong Yang†, Zhijian Liu, Yukang Chen, Ambrish Dantrey, Ehsan Jahangiri, Sreyan Ghosh, Daguang Xu, Ehsan Hosseini Asl, Danial Mohseni Taheri, Vidya Murali, Sifei Liu, Jason Lu, Oluwatobi Olabiyi, Frank Wang, Rafael Valle, Bryan Catanzaro, Andrew Tao, Song Han, Jan Kautz, Hongxu Yin^†, Pavlo Molchanov^  
 <span style="color: rgb(133, 184, 55);">**NVIDIA**</span>  
 *Corresponding Author | †Core Authors | ^Senior Authors 
 
@@ -48,13 +47,13 @@ We finally demonstrate omni-modal advantages in downstream applications spanning
 
 1. Download and cd huggingface repo
 ```
-huggingface-cli download nvidia/nvOmni-8B --local-dir ./nvOmni-8B --local-dir-use-symlinks False
-cd ./nvOmni-8B
+huggingface-cli download nvidia/omnivinci --local-dir ./omnivinci --local-dir-use-symlinks False
+cd ./omnivinci
 ```
 
-2. Install python environment for nvOmni (based on NVILA codebase)
+2. Install python environment (based on NVILA codebase)
 ```
-bash ./environment_setup.sh nvomni
+bash ./environment_setup.sh omnivinci
 ```
 
 ### 🤗 Transformers Usage
