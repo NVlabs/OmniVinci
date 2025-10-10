@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniVinci: Joint Visual-Audio Understanding</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            background-color: #fdfdfd;
+            font-size: 18px;
+        }
+        header, section {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #111;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            color: #333;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.4em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .authors {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 1200px;
+            line-height: 1.8;
+            color: #444;
+            font-size: 1.1em;
+        }
+        .authors a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .authors a:hover {
+            text-decoration: underline;
+        }
+        .authors sup {
+            font-size: 0.75em;
+        }
+        .affiliation {
+            text-align: center;
+            margin: 15px auto 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            color: rgb(133, 184, 55);
+        }
+        .author-note {
+            text-align: center;
+            margin: 10px auto 20px;
+            font-size: 1em;
+            color: #666;
+            font-style: italic;
+        }
+        .nav-links {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.3em;
+        }
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+        }
+        .demo-container {
+            margin-top: 30px;
+        }
+        .demo-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+        .demo-item video, .demo-item img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .prompt, .response {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9e9e9;
+            font-size: 1.1em;
+        }
+        .prompt code {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #e9e9e9;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .response blockquote {
+            margin: 0;
+            padding-left: 15px;
+            border-left: 3px solid #007bff;
+            color: #444;
+        }
+        .method-figure, .benchmark-figure {
+            text-align: center;
+            margin: 40px auto;
+        }
+        .method-figure img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .method-figure-small {
+            text-align: center;
+            margin: 40px auto;
+        }
+        .method-figure-small img {
+            width: 700px;
+            max-width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .benchmark-figure img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .benchmark-omni img {
+            width: 600px;
+        }
+        .benchmark-image img {
+            width: 1100px;
+        }
+        .benchmark-video img {
+            width: 600px;
+        }
+        .benchmark-mmar img {
+            width: 400px;
+        }
+        .benchmark-mmau img {
+            width: 1000px;
+        }
+        .benchmark-asr img {
+            width: 900px;
+        }
+        .figure-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+        .audio-prompt-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #555;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") no-repeat center;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .demo-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM</span></h1>
+        
+        <div class="authors">
+            <a href="https://sites.google.com/site/yhrspace/home">Hanrong Ye</a><sup>*†</sup>, 
+            <a href="https://huckiyang.github.io/">Huck Yang</a><sup>†</sup>, 
+            <a href="https://scholar.google.com/citations?user=tj08PZcAAAAJ&hl=en">Arushi Goel</a><sup>†</sup>, 
+            <a href="https://aaron-weihuang.com/">Wei Huang</a><sup>†</sup>, 
+            <a href="https://lzhu.me/">Ligeng Zhu</a><sup>†</sup>, 
+            <a href="https://scholar.google.com/citations?user=n335GwUAAAAJ&hl=en">Yuanhang Su</a><sup>†</sup>, 
+            <a href="https://www.nvidia.com/en-us/">Sean Lin</a><sup>†</sup>, 
+            <a href="https://www.anjiecheng.me/">An-Chieh Cheng</a><sup>†</sup>, 
+            <a href="https://scholar.google.com/citations?user=OH_1qwMAAAAJ&hl=en">Zhen Wan</a><sup>†</sup>, 
+            <a href="https://jctian98.github.io/">Jinchuan Tian</a><sup>†</sup>, 
+            <a href="https://github.com/Louym">Yuming Lou</a><sup>†</sup>, 
+            <a href="https://scholar.google.com/citations?user=PHvliUgAAAAJ&hl=en">Dong Yang</a><sup>†</sup>, 
+            <a href="https://zhijianliu.com/">Zhijian Liu</a>, 
+            <a href="https://yukangchen.com/">Yukang Chen</a>, 
+            <a href="https://www.nvidia.com/en-us/">Ambrish Dantrey</a>, 
+            <a href="https://www.nvidia.com/en-us/">Ehsan Jahangiri</a>, 
+            <a href="https://sreyan88.github.io/">Sreyan Ghosh</a>, 
+            <a href="https://scholar.google.com/citations?user=r_VHYHAAAAAJ&hl=en">Daguang Xu</a>, 
+            <a href="https://scholar.google.com/citations?user=I9w3ON4AAAAJ&hl=en">Ehsan Hosseini Asl</a>, 
+            <a href="https://danialtaheri.github.io/">Danial Mohseni Taheri</a>, 
+            <a href="https://www.linkedin.com/in/vidya-n-murali/">Vidya Murali</a>, 
+            <a href="https://sifeiliu.net/">Sifei Liu</a>, 
+            <a href="https://www.linkedin.com/in/yao-jason-lu-a0291938/">Jason Lu</a>, 
+            <a href="https://www.linkedin.com/in/oluwatobi-olabiyi-08955123/">Oluwatobi Olabiyi</a>, 
+            <a href="https://scholar.google.com/citations?user=HSGvdtoAAAAJ&hl=en">Frank Wang</a>, 
+            <a href="https://rafaelvalle.github.io/">Rafael Valle</a>, 
+            <a href="https://www.linkedin.com/in/bryancatanzaro/">Bryan Catanzaro</a>, 
+            <a href="https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en">Andrew Tao</a>, 
+            <a href="https://hanlab.mit.edu/songhan">Song Han</a>, 
+            <a href="https://jankautz.com/">Jan Kautz</a>, 
+            <a href="https://hongxu-yin.github.io/">Hongxu Yin</a><sup>*^†</sup>, 
+            <a href="https://www.pmolchanov.com/">Pavlo Molchanov</a><sup>^</sup>
+        </div>
+        
+        <div class="affiliation">
+            NVIDIA
+        </div>
+        
+        <div class="author-note">
+            *Corresponding Author | †Core Contribution | ^Equal Advisory
+        </div>
+        
+        <div class="nav-links">
+            <a href="#abstract">Abstract</a>
+            <a href="#method">Method</a>
+            <a href="#benchmarks">Benchmarks</a>
+            <a href="#demos">Demonstrations</a>
+            <a href="https://1drv.ms/b/c/B25CDB7F0B457DEF/ES4ICpT2GH9Dqj3H6GldeIQBs15QeZ1JrWKzWcQjHH6p1Q?e=YAVuAi">Paper</a>
+            <a href="https://github.com/NVlabs/OmniVinci">Code</a>
+        </div>
+    </header>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p>
+<strong>OmniVinci</strong> is our systematic research of new model architecture and data curation for omni-modal LLMs, resulting in a model that achieves state-of-the-art performance in joint perception of images, videos, audio, and text. 
+For model architecture, we present three key innovations: <strong>(i) OmniAlignNet</strong> for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space; <strong>(ii) Temporal Embedding Grouping</strong> for capturing relative temporal alignment between vision and audio signals; and <strong>(iii) Constrained Rotary Time Embedding</strong> for encoding absolute temporal information in omni-modal embeddings. We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning.
+Our model (9B) outperforms Qwen2.5-Omni with <strong>+19.05</strong> on DailyOmni (cross-modal understanding), <strong>+1.7</strong> on MMAR (audio), and <strong>+3.9</strong> on Video-MME (vision), while using just 0.2T training tokens - a 6x reduction compared to Qwen2.5-Omni's 1.2T. We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory in the paper.
+        </p>
+    </section>
+
+    <section id="method">
+        <h2>Method</h2>
+        
+        <div class="method-figure">
+            <img src="image/arch.png" alt="OmniVinci Architecture">
+            <div class="figure-caption">Figure 1: OmniVinci Architecture Overview</div>
+        </div>
+        
+        <div class="method-figure-small">
+            <img src="image/omnialignmodule.png" alt="OmniAlignNet Module">
+            <div class="figure-caption">Figure 2: OmniAlignNet Module for Cross-Modal Alignment</div>
+        </div>
+    </section>
+
+    <section id="benchmarks">
+        <h2>Benchmark Results</h2>
+        
+        <div class="benchmark-figure benchmark-omni">
+            <img src="image/omni_benchmark.png" alt="Omni-Modal Benchmark Results">
+            <div class="figure-caption">Table 1: Omni-Modal Understanding Results</div>
+        </div>
+        
+        <div class="benchmark-figure benchmark-video">
+            <img src="image/video_benchmarks.png" alt="Video Benchmark Results">
+            <div class="figure-caption">Table 2: Video Understanding Results</div>
+        </div>
+        
+        <div class="benchmark-figure benchmark-mmar">
+            <img src="image/mmar.png" alt="MMAR Benchmark Results">
+            <div class="figure-caption">Table 3: MMAR Audio Results</div>
+        </div>
+        
+        <div class="benchmark-figure benchmark-mmau">
+            <img src="image/mmau.png" alt="MMAU Benchmark Results">
+            <div class="figure-caption">Table 4: MMAU Audio Results</div>
+        </div>
+        
+        <div class="benchmark-figure benchmark-asr">
+            <img src="image/asr_benchmarks.png" alt="ASR Benchmark Results">
+            <div class="figure-caption">Table 5: ASR Benchmark Results</div>
+        </div>
+        
+        <div class="benchmark-figure benchmark-image">
+            <img src="image/image_benchmarks.png" alt="Image Benchmark Results">
+            <div class="figure-caption">Table 6: Image Understanding Results</div>
+        </div>
+    </section>
+
+    <section id="demos">
+        <h2>Demonstrations</h2>
+
+        <div class="demo-container">
+            <h3>1. Detailed Video Content Analysis</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/trim_jensen_interview.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Prompt:</strong> <code>[Video] + "What are they talking about in detail?"</code>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output:</h3>
+                        <blockquote>
+                            The video features Jensen Huang with gray hair and glasses, dressed in a black leather jacket, speaking into a microphone in a modern office setting. The background includes a glass wall and a green panel, with a blurred view of desks and chairs. Jensen Huang discusses the evolution of artificial intelligence, focusing on the impact of deep learning and the development of AI frameworks. He emphasizes the importance of data, computing power, and software methodologies in driving AI advancements. The conversation highlights the transformative potential of AI, particularly in perception and generative capabilities, and the need for a new approach to software development. Jensen Huang also mentions the creation of a new AI supercomputer, DGX-1, and its impact on the industry. The video concludes with Jensen Huang discussing the second phase of AI, generative AI, and its potential to revolutionize the way we understand and create information.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-container">
+            <h3>2. Detailed Visual Narration</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/robot_jensen.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Prompt:</strong> <code>[Video] + "Describe the video in detail." </code>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output:</h3>
+                        <blockquote>
+                            The video begins with Jensen Huang in a modern, well-lit room with large windows and a view of greenery outside. He dressed in a black jacket and white pants, is seated at a table, writing a message on a black card with a gold pen. The message reads, "To Robot, Enjoy Your New Brain!" followed by a signature. He then places the card on the table rand begins to open a large black gift box with a gold ribbon and bow. The scene transitions to a close-up of the gift box on the table, with the person's hand visible. The focus then shifts to a robot wearing a white hard hat with the "NVIDIA" logo, standing in a workshop or industrial setting. The robot holds the same black gift box with the gold ribbon and bow, and it opens the box to reveal the black card with the message. The robot examines the card closely. The narrative continues with the robot, still in the workshop setting, holding the black gift box. The robot opens the box, revealing a sleek, white device with a black screen, nestled in crumpled black paper. The robot examines the device closely, then places it back into the box and closes it. The scene transitions to a different setting, where the robot is now in a modern office environment with green walls and multiple computer monitors. The robot stands behind the closed gift box, gesturing with its hands as if explaining or presenting something. The video wraps up with the robot in the modern office environment, gesturing with its hands. The scene transitions to a close-up of the robot's face, showing its detailed features and expressive eyes. The robot continues to gesture, emphasizing its points. The video concludes with the NVIDIA logo displayed on a white background, indicating the band associated with the robot and the gift."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <h3>3. Detailed Video and Audio Analysis</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/lecun.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Prompt:</strong> <code>[Video] + "Assess the video, followed by a detailed description of it's video and audio contents."</code>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output:</h3>
+                        <blockquote>
+                            The video features a podcast discussion between two individuals, one in a light blue shirt and the other in a black blazer, set in a professional studio environment with beige walls and a microphone setup. The conversation revolves around the topic of artificial intelligence (AI), specifically focusing on the limitations and challenges of achieving human-level AI through neural networks (NNs). The individual in the light blue shirt, who is the primary speaker, expresses skepticism about the feasibility of NNs reaching human-level intelligence, emphasizing the need for a different approach. He highlights the limitations of NNs in handling complex tasks and the potential for diminishing returns on investment in this area. The individual in the black blazer, who listens attentively and occasionally interjects, shares his perspective on the potential of AI and the importance of understanding the physical world for AI systems to reason and plan effectively. He also discusses the challenges of achieving human-level AI and the need for a collaborative approach among the research community to address these challenges. The discussion is analytical and focused on the technical and practical aspects of AI, with both individuals providing insights and perspectives on the topic.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <h3>4. In-Context Speech Transcription</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/trim_gtc_1min.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Prompt:</strong> <code>[Video] + "Transcribe the speech." </code>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output:</h3>
+                        <blockquote>
+                            The first part is: let's just go from what the AI can do. Let me work backwards. Agentic AI, as I mentioned, at this foundation is reasoning. We now have AIs that can reason, which is fundamentally about breaking a problem down step by step. Maybe it approaches a problem in a few different ways and selects the best answer. Maybe it solves the same problem in a variety of ways, and ensures it has the same answer — consistency checking. Or maybe, after it's done deriving the answer, it plugs it back into the equation — maybe a quadratic equation — to confirm that, in fact, that's the right answer instead of just one-shot blurting it out.
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <h3>5. Speech-Prompted Visual Intelligence</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/kitchen2.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Audio Prompt 1:</strong> <br><audio src="audio/well_what_can_you_see.wav" controls style="margin-top: 8px; width: 100%;"></audio>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output 1:</h3>
+<blockquote>I see a kitchen setting with a countertop, a sink, and various kitchen items. There's a person's hand visible.... The countertop has a cutting board, a spoon, and a bottle of cleaning product. There's also a bowl with what appears to be pasta or noodles.</blockquote>
+                    </div>
+                     <div class="prompt" style="margin-top:15px;">
+<strong>Audio Prompt 2:</strong> <br><audio src="audio/my_hands_are_dirty.wav" controls style="margin-top: 8px; width: 100%;"></audio>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output 2:</h3>
+<blockquote>Yes, you can use the soap dispenser located on the countertop next to the sink. </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-container">
+            <h3>6. Interactive Game Playing (Taboo)</h3>
+            <div class="demo-item">
+                <div>
+                    <video src="video/taboo_quesions_1.mp4" controls></video>
+                </div>
+                <div>
+                    <div class="prompt">
+<strong>Audio Prompt in Video:</strong> <span class="audio-prompt-icon"></span> <code>"...it's kind of similar to the human brain, a lot of layers of nodes and weight connections... it's kind of like originate from the 1950s." </code>
+                    </div>
+                    <div class="response">
+                        <h3>OmniVinci Output (Guessed Word):</h3>
+                        <blockquote>
+The word is <strong>"Neural Network"</strong>. 
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
