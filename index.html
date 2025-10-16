@@ -120,6 +120,14 @@
             border: 1px solid #e9e9e9;
             font-size: 1.1em;
         }
+        /* Audio output window: light yellow fill */
+        .audio-output {
+            background-color: #fffbe6;
+            border: 1px solid #f6c90e;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
         /* Prompt window: NVIDIA green frame + very light green fill */
         .prompt { background-color: #f6ffeb; border-color: #76B900; }
         .prompt code {
@@ -272,7 +280,11 @@
         /* Dark theme containers */
         html[data-theme="dark"] .response { background-color: #0f172a; border-color: #1f2937; }
         html[data-theme="dark"] .response blockquote { color: #d1d5db; border-left-color: #4b5563; }
-        html[data-theme="dark"] .prompt { background-color: #0e1a0a; border-color: #76B900; }
+        /* Keep prompt readable in dark mode: light fill + black text */
+        html[data-theme="dark"] .prompt { background-color: #f6ffeb; border-color: #76B900; color: #111; }
+        html[data-theme="dark"] .prompt code { background-color: #eaf7d1; color: #111; }
+        /* Audio output remains readable in dark mode */
+        html[data-theme="dark"] .audio-output { background-color: #fffbe6; border-color: #f6c90e; color: #111; }
         html[data-theme="dark"] .authors { color: #d1d5db; }
         html[data-theme="dark"] .authors a { color: #9ddc3c; }
         html[data-theme="dark"] .audio-prompt-icon { background-color: #ddd; }
@@ -512,12 +524,20 @@ Our model (9B) outperforms Qwen2.5-Omni with <strong>+19.05</strong> on DailyOmn
                         <h3>OmniVinci Output 1:</h3>
 <blockquote>I see a kitchen setting with a countertop, a sink, and various kitchen items. There's a person's hand visible.... The countertop has a cutting board, a spoon, and a bottle of cleaning product. There's also a bowl with what appears to be pasta or noodles.</blockquote>
                     </div>
+                    <div class="audio-output" style="margin-top: 12px;">
+                        <strong>OmniVinci Voice-Output 1 (Target Speaker):</strong>
+                        <audio src="audio/jhh_omni_1.wav" controls style="margin-top: 8px; width: 100%;"></audio>
+                    </div>
                      <div class="prompt" style="margin-top:15px;">
 <strong>Audio Prompt 2:</strong> <br><audio src="audio/my_hands_are_dirty.wav" controls style="margin-top: 8px; width: 100%;"></audio>
                     </div>
                     <div class="response">
                         <h3>OmniVinci Output 2:</h3>
 <blockquote>Yes, you can use the soap dispenser located on the countertop next to the sink. </blockquote>
+                    </div>
+                    <div class="audio-output" style="margin-top: 12px;">
+                        <strong>OmniVinci Voice-Output 2 (Target Speaker):</strong>
+                        <audio src="audio/jhh_omni_2.wav" controls style="margin-top: 8px; width: 100%;"></audio>
                     </div>
                 </div>
             </div>
