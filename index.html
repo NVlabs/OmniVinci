@@ -120,9 +120,11 @@
             border: 1px solid #e9e9e9;
             font-size: 1.1em;
         }
+        /* Prompt window: NVIDIA green frame + very light green fill */
+        .prompt { background-color: #f6ffeb; border-color: #76B900; }
         .prompt code {
             font-family: "Courier New", Courier, monospace;
-            background-color: #e9e9e9;
+            background-color: #eaf7d1;
             padding: 2px 5px;
             border-radius: 4px;
         }
@@ -218,7 +220,10 @@
             padding: 12px 16px;
             overflow-x: auto;
             white-space: nowrap;
+            position: relative;
         }
+        .top-tabs-links { display: flex; align-items: center; gap: 8px; }
+        .right-controls { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; }
         .top-tabs a {
             display: inline-block;
             padding: 8px 14px;
@@ -235,17 +240,65 @@
             background: #76B900; /* NVIDIA green */
             color: #fff;
         }
+        .theme-toggle {
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            color: #111827;
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            line-height: 1;
+        }
+        .theme-toggle:hover { background: #f2f4f7; }
+        .theme-toggle .icon-sun, .theme-toggle .icon-moon { font-size: 18px; display: inline-block; }
+        .theme-toggle .icon-moon { display: none; }
+        html[data-theme="dark"] .theme-toggle { background: #0f172a; border-color: #1f2937; color: #e5e7eb; }
+        html[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+        html[data-theme="dark"] .theme-toggle .icon-moon { display: inline-block; }
+        /* Pre-JS: respect OS preference for icon state when no explicit data-theme */
+        @media (prefers-color-scheme: dark) {
+            html:not([data-theme]) .theme-toggle .icon-sun { display: none; }
+            html:not([data-theme]) .theme-toggle .icon-moon { display: inline-block; }
+        }
+
+        /* Dark theme */
+        html[data-theme="dark"] body { background-color: #0f1115; color: #e5e7eb; }
+        html[data-theme="dark"] h1, html[data-theme="dark"] h2 { color: #e5e7eb; }
+        html[data-theme="dark"] .figure-caption { color: #9aa4b2; }
+        /* Dark theme containers */
+        html[data-theme="dark"] .response { background-color: #0f172a; border-color: #1f2937; }
+        html[data-theme="dark"] .response blockquote { color: #d1d5db; border-left-color: #4b5563; }
+        html[data-theme="dark"] .prompt { background-color: #0e1a0a; border-color: #76B900; }
+        html[data-theme="dark"] .authors { color: #d1d5db; }
+        html[data-theme="dark"] .authors a { color: #9ddc3c; }
+        html[data-theme="dark"] .audio-prompt-icon { background-color: #ddd; }
+        html[data-theme="dark"] .top-tabs { background: #0b0f14; border-bottom: 1px solid #1f2937; }
+        html[data-theme="dark"] .top-tabs a { color: #e5e7eb; }
+        html[data-theme="dark"] .top-tabs a:hover { background: #1f2937; }
+        html[data-theme="dark"] .theme-toggle { background: #0f172a; border-color: #1f2937; color: #e5e7eb; }
     </style>
 </head>
 <body>
     <nav class="top-tabs" aria-label="Primary">
         <div class="top-tabs-inner">
-            <a href="#abstract" data-section="abstract">Abstract</a>
-            <a href="#method" data-section="method">Method</a>
-            <a href="#benchmarks" data-section="benchmarks">Benchmarks</a>
-            <a href="#demos" data-section="demos">Demonstrations</a>
-            <a href="https://1drv.ms/b/c/B25CDB7F0B457DEF/ES4ICpT2GH9Dqj3H6GldeIQBs15QeZ1JrWKzWcQjHH6p1Q?e=YAVuAi" target="_blank" rel="noopener">Paper</a>
-            <a href="https://github.com/NVlabs/OmniVinci" target="_blank" rel="noopener">Code</a>
+            <div class="top-tabs-links">
+                <a href="#abstract" data-section="abstract">Abstract</a>
+                <a href="#method" data-section="method">Method</a>
+                <a href="#benchmarks" data-section="benchmarks">Benchmarks</a>
+                <a href="#demos" data-section="demos">Demonstrations</a>
+                <a href="https://1drv.ms/b/c/B25CDB7F0B457DEF/ES4ICpT2GH9Dqj3H6GldeIQBs15QeZ1JrWKzWcQjHH6p1Q?e=YAVuAi" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/NVlabs/OmniVinci" target="_blank" rel="noopener">Code</a>
+            </div>
+            <div class="right-controls">
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <span class="icon-sun" aria-hidden="true">☀️</span>
+                    <span class="icon-moon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -539,6 +592,47 @@ The word is <strong>"Neural Network"</strong>.
         document.addEventListener('scroll', updateActive, { passive: true });
         window.addEventListener('load', updateActive);
         updateActive();
+
+        // Theme handling
+        const toggleBtn = nav.querySelector('.theme-toggle');
+        const storageKey = 'ov-theme';
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            if (toggleBtn) toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+        function getPreferredTheme() {
+            const stored = localStorage.getItem(storageKey);
+            if (stored === 'light' || stored === 'dark') return stored;
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return prefersDark ? 'dark' : 'light';
+        }
+        let currentTheme = getPreferredTheme();
+        applyTheme(currentTheme);
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(storageKey, currentTheme);
+                applyTheme(currentTheme);
+            });
+        }
+        if (window.matchMedia) {
+            try {
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                    if (!localStorage.getItem(storageKey)) {
+                        currentTheme = e.matches ? 'dark' : 'light';
+                        applyTheme(currentTheme);
+                    }
+                });
+            } catch (_) {
+                // Safari fallback
+                window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
+                    if (!localStorage.getItem(storageKey)) {
+                        currentTheme = e.matches ? 'dark' : 'light';
+                        applyTheme(currentTheme);
+                    }
+                });
+            }
+        }
     })();
 </script>
 </body>
