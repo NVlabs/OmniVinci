@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OmniVinci: Joint Visual-Audio Understanding</title>
     <style>
+        :root {
+            --nav-h: 64px;
+        }
+        html { scroll-behavior: smooth; }
+        body { padding-top: calc(var(--nav-h) + 24px); }
+        section { scroll-margin-top: calc(var(--nav-h) + 16px); }
+        .nav-links { display: none; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
@@ -185,9 +192,56 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* fixed top tab bar */
+        .top-tabs {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1400px;
+            z-index: 1000;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .top-tabs-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .top-tabs a {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .top-tabs a:hover {
+            background: #f2f4f7;
+        }
+        .top-tabs a.active {
+            background: #76B900; /* NVIDIA green */
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <nav class="top-tabs" aria-label="Primary">
+        <div class="top-tabs-inner">
+            <a href="#abstract" data-section="abstract">Abstract</a>
+            <a href="#method" data-section="method">Method</a>
+            <a href="#benchmarks" data-section="benchmarks">Benchmarks</a>
+            <a href="#demos" data-section="demos">Demonstrations</a>
+            <a href="https://1drv.ms/b/c/B25CDB7F0B457DEF/ES4ICpT2GH9Dqj3H6GldeIQBs15QeZ1JrWKzWcQjHH6p1Q?e=YAVuAi" target="_blank" rel="noopener">Paper</a>
+            <a href="https://github.com/NVlabs/OmniVinci" target="_blank" rel="noopener">Code</a>
+        </div>
+    </nav>
 
     <header>
         <h1><span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM</span></h1>
@@ -432,5 +486,54 @@ The word is <strong>"Neural Network"</strong>.
 
     </section>
 
+<script>
+    (function() {
+        const nav = document.querySelector('.top-tabs');
+        if (!nav) return;
+        const setNavHeightVar = () => {
+            const navHeight = nav.offsetHeight || 64;
+            document.documentElement.style.setProperty('--nav-h', navHeight + 'px');
+        };
+        setNavHeightVar();
+        window.addEventListener('resize', setNavHeightVar);
+
+        const links = nav.querySelectorAll('a[href^="#"]');
+        const sections = Array.from(document.querySelectorAll('section'));
+
+        function activeSection() {
+            const offset = (nav.offsetHeight || 64) + 12;
+            let current = sections[0];
+            for (const sec of sections) {
+                const { top } = sec.getBoundingClientRect();
+                if (top - offset <= 0) current = sec; else break;
+            }
+            return current;
+        }
+
+        function updateActive() {
+            const current = activeSection();
+            if (!current) return;
+            const id = current.id;
+            nav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+            const el = nav.querySelector(`a[data-section="${id}"]`);
+            if (el) el.classList.add('active');
+        }
+
+        links.forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const hash = a.getAttribute('href');
+                const target = document.querySelector(hash);
+                if (!target) return;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - (nav.offsetHeight || 64) - 12;
+                window.scrollTo({ top, behavior: 'smooth' });
+            });
+        });
+
+        document.addEventListener('scroll', updateActive, { passive: true });
+        window.addEventListener('load', updateActive);
+        updateActive();
+    })();
+</script>
 </body>
 </html>
