@@ -208,6 +208,33 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* Omni vivid dynamic gradient text */
+        .omni-gradient-text {
+            background: linear-gradient(90deg,
+                #76B900 0%,
+                #4facfe 20%,
+                #f093fb 40%,
+                #f5576c 60%,
+                #ffd700 80%,
+                #76B900 100%
+            );
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            font-weight: 800;
+            font-size: 1.1em; /* preserve prior span sizing */
+            animation: omniGradient 16s ease infinite;
+        }
+        @keyframes omniGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .omni-gradient-text { animation: none; }
+        }
         /* fixed top tab bar */
         .top-tabs {
             position: fixed;
@@ -301,7 +328,7 @@
         <div class="top-tabs-inner">
             <div class="top-tabs-links">
                 <a href="#abstract" data-section="abstract">Abstract</a>
-                <a href="#method" data-section="method">Method</a>
+                <a href="#method" data-section="method">OmniVinci Method</a>
                 <a href="#benchmarks" data-section="benchmarks">Benchmarks</a>
                 <a href="#demos" data-section="demos">Demonstrations</a>
                 <a href="#citation" data-section="citation">Citation</a>
@@ -318,7 +345,7 @@
     </nav>
 
     <header>
-        <h1><span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM</span></h1>
+        <h1><span class="omni-gradient-text">OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM</span></h1>
         
         <div class="authors">
             <a href="https://sites.google.com/site/yhrspace/home">Hanrong Ye</a><sup>*†</sup>, 
