@@ -161,6 +161,16 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+        .method-figure-half {
+            text-align: center;
+            margin: 40px auto;
+        }
+        .method-figure-half img {
+            width: 80%;
+            max-width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
         .benchmark-figure img {
             max-width: 100%;
             border-radius: 8px;
@@ -408,7 +418,12 @@
 For model architecture, we present three key innovations: <strong>(i) OmniAlignNet</strong> for strengthening alignment between vision and audio embeddings in a shared omni-modal latent space; <strong>(ii) Temporal Embedding Grouping</strong> for capturing relative temporal alignment between vision and audio signals; and <strong>(iii) Constrained Rotary Time Embedding</strong> for encoding absolute temporal information in omni-modal embeddings. We introduce a curation and synthesis pipeline that generates 24M single-modal and omni-modal conversations. We find that modalities reinforce one another in both perception and reasoning.
 Our model (9B) outperforms Qwen2.5-Omni with <strong>+19.05</strong> on DailyOmni (cross-modal understanding), <strong>+1.7</strong> on MMAR (audio), and <strong>+3.9</strong> on Video-MME (vision), while using just 0.2T training tokens - a 6x reduction compared to Qwen2.5-Omni's 1.2T. We finally demonstrate omni-modal advantages in downstream applications spanning robotics, medical AI, and smart factory in the paper.
         </p>
-    </section>
+         
+     <div class="method-figure-half">
+         <img src="image/metrics_highlight.png" alt="Performance Highlights">
+     </div>
+
+    </section>     
 
     <section id="method">
         <h2>OmniVinci Method</h2>
