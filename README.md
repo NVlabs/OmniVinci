@@ -4,7 +4,7 @@
 
 # <span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">**OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM**</span> <br />
 
-[![Paper](https://img.shields.io/badge/ArXiv-Paper-brown)](https://arxiv.org/)
+[![Paper](https://img.shields.io/badge/ArXiv-Paper-brown)](https://arxiv.org/abs/2510.15870)
 [![Code](https://img.shields.io/badge/GitHub-Link-blue)](https://github.com/NVlabs/OmniVinci)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/nvidia/omnivinci)
 [![Website](https://img.shields.io/badge/Web-Page-orange)](https://nvlabs.github.io/OmniVinci)
