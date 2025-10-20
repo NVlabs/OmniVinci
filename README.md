@@ -8,6 +8,8 @@
 [![Code](https://img.shields.io/badge/GitHub-Link-blue)](https://github.com/NVlabs/OmniVinci)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/nvidia/omnivinci)
 [![Website](https://img.shields.io/badge/Web-Page-orange)](https://nvlabs.github.io/OmniVinci)
+[![Video](https://img.shields.io/badge/Video-Demo-white)](https://youtu.be/w84pPuGFH4o?si=OUFhhiXeQbzil7gN)
+
 
 <div align="center">
 
