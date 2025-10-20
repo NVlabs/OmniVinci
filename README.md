@@ -40,7 +40,7 @@ We finally demonstrate omni-modal advantages in downstream applications spanning
 
 
 ## News
-- [x] **[2025 Dec 20] OmniVinci-9B** is released! It supports joint understanding of **vision, audio, and text**.
+- [x] **[2025 Oct 19] OmniVinci-9B** is released! It supports joint understanding of **vision, audio, and text**.
 
 ## Model Usage
 <p align="center" width="100%">
