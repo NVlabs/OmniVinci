@@ -15,7 +15,7 @@
 
 </div>
 
-[Hanrong Ye*†](https://sites.google.com/site/yhrspace/home), [Chao-Han Huck Yang†](https://huckiyang.github.io/), [Arushi Goel†](https://scholar.google.com/citations?user=tj08PZcAAAAJ&hl=en), [Wei Huang†](https://aaron-weihuang.com/), [Ligeng Zhu†](https://lzhu.me/), [Yuanhang Su†](https://scholar.google.com/citations?user=n335GwUAAAAJ&hl=en), [Sean Lin†](https://www.nvidia.com/en-us/), [An-Chieh Cheng†](https://www.anjiecheng.me/), [Zhen Wan†](https://scholar.google.com/citations?user=OH_1qwMAAAAJ&hl=en), [Jinchuan Tian†](https://jctian98.github.io/), [Yuming Lou†](https://github.com/Louym), [Dong Yang†](https://scholar.google.com/citations?user=PHvliUgAAAAJ&hl=en), [Zhijian Liu](https://zhijianliu.com/), [Yukang Chen](https://yukangchen.com/), [Ambrish Dantrey](https://www.nvidia.com/en-us/), [Ehsan Jahangiri](https://www.nvidia.com/en-us/), [Sreyan Ghosh](https://sreyan88.github.io/), [Daguang Xu](https://scholar.google.com/citations?user=r_VHYHAAAAAJ&hl=en), [Ehsan Hosseini Asl](https://scholar.google.com/citations?user=I9w3ON4AAAAJ&hl=en), [Danial Mohseni Taheri](https://danialtaheri.github.io/), [Vidya Murali](https://www.linkedin.com/in/vidya-n-murali/), [Sifei Liu](https://sifeiliu.net/), [Jason Lu](https://www.linkedin.com/in/yao-jason-lu-a0291938/), [Oluwatobi Olabiyi](https://www.linkedin.com/in/oluwatobi-olabiyi-08955123/), [Frank Wang](https://scholar.google.com/citations?user=HSGvdtoAAAAJ&hl=en), [Rafael Valle](https://rafaelvalle.github.io/), [Bryan Catanzaro](https://www.linkedin.com/in/bryancatanzaro/), [Andrew Tao](https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en), [Song Han](https://hanlab.mit.edu/songhan), [Jan Kautz](https://jankautz.com/), [Hongxu Yin*^†](https://hongxu-yin.github.io/), [Pavlo Molchanov^](https://www.pmolchanov.com/)  
+[Hanrong Ye*†](https://sites.google.com/site/yhrspace/home), [Chao-Han Huck Yang†](https://huckiyang.github.io/), [Arushi Goel†](https://scholar.google.com/citations?user=tj08PZcAAAAJ&hl=en), [Wei Huang†](https://aaron-weihuang.com/), [Ligeng Zhu†](https://lzhu.me/), [Yuanhang Su†](https://scholar.google.com/citations?user=n335GwUAAAAJ&hl=en), [Sean Lin†](https://www.nvidia.com/en-us/), [An-Chieh Cheng†](https://www.anjiecheng.me/), [Zhen Wan†](https://scholar.google.com/citations?user=OH_1qwMAAAAJ&hl=en), [Jinchuan Tian†](https://jctian98.github.io/), [Yuming Lou†](https://github.com/Louym), [Dong Yang†](https://scholar.google.com/citations?user=PHvliUgAAAAJ&hl=en), [Zhijian Liu](https://zhijianliu.com/), [Yukang Chen](https://yukangchen.com/), [Ambrish Dantrey](https://www.nvidia.com/en-us/), [Ehsan Jahangiri](https://www.nvidia.com/en-us/), [Sreyan Ghosh](https://sreyan88.github.io/), [Daguang Xu](https://scholar.google.com/citations?user=r_VHYHAAAAAJ&hl=en), [Ehsan Hosseini Asl](https://scholar.google.com/citations?user=I9w3ON4AAAAJ&hl=en), [Danial Mohseni Taheri](https://danialtaheri.github.io/), [Vidya Murali](https://www.linkedin.com/in/vidya-n-murali/), [Sifei Liu](https://sifeiliu.net/), [Yao Lu](https://www.linkedin.com/in/yao-jason-lu-a0291938/), [Oluwatobi Olabiyi](https://www.linkedin.com/in/oluwatobi-olabiyi-08955123/), [Yu-Chiang Frank Wang](https://scholar.google.com/citations?user=HSGvdtoAAAAJ&hl=en), [Rafael Valle](https://rafaelvalle.github.io/), [Bryan Catanzaro](https://www.linkedin.com/in/bryancatanzaro/), [Andrew Tao](https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en), [Song Han](https://hanlab.mit.edu/songhan), [Jan Kautz](https://jankautz.com/), [Hongxu Yin*^†](https://hongxu-yin.github.io/), [Pavlo Molchanov^](https://www.pmolchanov.com/)  
 
 <span style="color: rgb(133, 184, 55);">**NVIDIA**</span>  
 *Corresponding Author | †Core Contribution | ^Equal Advisory
@@ -143,10 +143,11 @@ https://github.com/user-attachments/assets/19a03604-f6f8-4407-a93d-c078b621e940
 Please consider to cite our paper and this framework, if they are helpful in your research.
 
 ```bibtex
-@article{omnivinci2025,
-      title={OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM},
-      author={Hanrong Ye, Chao-Han Huck Yang, Arushi Goel, Wei Huang, Ligeng Zhu, Yuanhang Su, Sean Lin, An-Chieh Cheng, Zhen Wan, Jinchuan Tian, Yuming Lou, Dong Yang, Zhijian Liu, Yukang Chen, Ambrish Dantrey, Ehsan Jahangiri, Sreyan Ghosh, Daguang Xu, Ehsan Hosseini-Asl, Danial Mohseni Taheri, Vidya Murali, Sifei Liu, Jason Lu, Oluwatobi Olabiyi, Frank Wang, Rafael Valle, Bryan Catanzaro, Andrew Tao, Song Han, Jan Kautz, Hongxu Yin, Pavlo Molchanov},
-      journal={arXiv},
-      year={2025},
+@article{ye2025omnivinci,
+  title={OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM},
+  author={Ye, Hanrong and Yang, Chao-Han Huck and Goel, Arushi and Huang, Wei and Zhu, Ligeng and Su, Yuanhang and Lin, Sean and Cheng, An-Chieh and Wan, Zhen and Tian, Jinchuan and others},
+  journal={arXiv preprint arXiv:2510.15870},
+  year={2025}
+}
 }
 ```
