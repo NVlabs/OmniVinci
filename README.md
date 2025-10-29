@@ -149,5 +149,4 @@ Please consider to cite our paper and this framework, if they are helpful in you
   journal={arXiv preprint arXiv:2510.15870},
   year={2025}
 }
-}
 ```
