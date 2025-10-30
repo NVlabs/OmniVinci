@@ -83,7 +83,7 @@ config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
 
 model = AutoModel.from_pretrained(model_path,
                                   trust_remote_code=True,
-                                  torch_dtype="torch.float16",
+                                  torch_dtype=torch.float16,
                                   device_map="auto")
 
 processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
