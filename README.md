@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="assets/logo.png" alt="Stanford-Alpaca" style="width: 70%; min-width: 300px; display: block; margin: auto;">
+<img src="assets/logo.png" alt="OmniVinci" style="width: 70%; min-width: 300px; display: block; margin: auto;">
 </p>
 
 # <span style="background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: bold; font-size: 1.1em;">**OmniVinci: Enhancing Architecture and Data for Omni-Modal Understanding LLM (ICLR 2026)**</span> <br />
@@ -21,7 +21,7 @@
 *Corresponding Author | †Core Contribution | ^Equal Advisory
 
 <p align="center" width="100%">
-<img src="assets/performance.png" alt="Stanford-Alpaca" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+<img src="assets/performance.png" alt="OmniVinci" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 </p>
 
 Advancing machine intelligence requires developing the ability to perceive across multiple modalities, much as humans sense the world.
@@ -46,7 +46,7 @@ We finally demonstrate omni-modal advantages in downstream applications spanning
 
 ## Model Usage
 <p align="center" width="100%">
-<img src="assets/arch.png" alt="Stanford-Alpaca" style="width: 100%; min-width: 300px; display: block; margin: auto;">
+<img src="assets/arch.png" alt="OmniVinci" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 </p>
 ### Inference
 ### Envirnoment setup
