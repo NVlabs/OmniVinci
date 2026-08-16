@@ -49,7 +49,7 @@ We finally demonstrate omni-modal advantages in downstream applications spanning
 <img src="assets/arch.png" alt="Stanford-Alpaca" style="width: 100%; min-width: 300px; display: block; margin: auto;">
 </p>
 ### Inference
-### Envirnoment setup
+### Environment setup
 
 
 1. Download and cd huggingface repo
